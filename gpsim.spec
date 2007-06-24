@@ -13,15 +13,10 @@ Version:        %{version}
 Release:        %{release}
 Summary:        A software simulator for Microchip PIC microcontrollers
 Source0:        %{name}-%{version}.tar.bz2
-# build without gui
-Patch0:		gpsim-0.21.11-gui.patch.bz2
-# bugfix, included into upstream cvs
-Patch1:		gpsim-0.21.11.patch.bz2
 License:        GPL
 Group:          Development/Other
 Url:            http://www.dattalo.com/gnupic/gpsim.html
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-#BuildRequires:  gtk+extra-2-devel
 BuildRequires:  readline-devel flex popt-devel
 BuildRequires:  termcap-devel ncurses-devel glibc-static-devel
 
@@ -59,8 +54,7 @@ applications which will use libgpsim
 
 %prep
 %setup -q
-%patch0
-%patch1 
+
 %build
 export LDFLAGS="-ldl -lpthread"
 %configure --disable-gui
@@ -82,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_libdir}/*.so.*
 
-%files -n %{develname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
