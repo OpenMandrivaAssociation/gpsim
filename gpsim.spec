@@ -17,7 +17,7 @@ License:        GPL
 Group:          Development/Other
 Url:            http://www.dattalo.com/gnupic/gpsim.html
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:  readline-devel flex popt-devel
+BuildRequires:  readline-devel flex popt-devel glib2-devel
 BuildRequires:  termcap-devel ncurses-devel glibc-static-devel
 
 %description
