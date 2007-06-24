@@ -1,10 +1,11 @@
 %define name    gpsim
-%define version 0.21.11
+%define version 0.22.0
 %define release %mkrel 1
 
 %define lib_name_orig lib%{name}
 %define lib_major 0
 %define lib_name %mklibname %{name} %{lib_major}
+%define develname %mklibname -d %{name}
 
 Name:           %{name}
 Epoch:		1
@@ -41,13 +42,15 @@ Group:          System/Libraries
 This package contains the library needed to run programs dynamically
 linked with libgpsim
 
-%package -n     %{lib_name}-devel
+%package -n     %{develname}
 Summary:        Headers for developing programs that will use libgpsim
 Group:          Development/C
 Requires:       %{lib_name} = %{epoch}:%{version}
 Provides:       %{lib_name_orig}-devel = %{version}-%{release} 
 Provides:       %{name}-devel = %{version}-%{release}
-%description -n %{lib_name}-devel
+Obsoletes:	%{lib_name}-devel
+
+%description -n %{develname}
 This package contains the headers that programmers will need to develop
 applications which will use libgpsim
 
@@ -79,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_libdir}/*.so.*
 
-%files -n %{lib_name}-devel
+%files -n %{develname}-devel
 %defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
