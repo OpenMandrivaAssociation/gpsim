@@ -49,8 +49,12 @@ Obsoletes:	%{lib_name}-devel
 This package contains the headers that programmers will need to develop
 applications which will use libgpsim
 
+%if %mdkversion < 200900
 %post -n %{lib_name} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{lib_name} -p /sbin/ldconfig
+%endif
 
 %prep
 %setup -q
