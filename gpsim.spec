@@ -1,6 +1,6 @@
 %define name    gpsim
 %define version 0.24.0
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define lib_name_orig lib%{name}
 %define lib_major 0
@@ -20,6 +20,7 @@ Url:            http://www.dattalo.com/gnupic/gpsim.html
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  readline-devel flex popt-devel glib2-devel
 BuildRequires:  termcap-devel ncurses-devel glibc-static-devel
+BuildRequires:  libgtk+extra-2-devel
 
 %description
 gpsim is a full-featured software simulator for Microchip PIC microcontrollers
@@ -50,13 +51,6 @@ Obsoletes:	%{lib_name}-devel
 This package contains the headers that programmers will need to develop
 applications which will use libgpsim
 
-%if %mdkversion < 200900
-%post -n %{lib_name} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{lib_name} -p /sbin/ldconfig
-%endif
-
 %prep
 %setup -q
 %patch0 -p0
@@ -64,13 +58,15 @@ applications which will use libgpsim
 %build
 autoreconf -fi
 %define _disable_ld_no_undefined 1
-%configure2_5x --disable-gui
+%configure2_5x
 %make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
-chmod 644 $RPM_BUILD_ROOT%{_libdir}/*.la
+
+# zap .a and .la
+rm -fr %{buildroot}%{_libdir}/{*.a,*.la}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -88,5 +84,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*.la
-%{_libdir}/*.a
