@@ -53,11 +53,10 @@ applications which will use libgpsim
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p0 -b .link
 
 %build
 %define _disable_ld_no_undefined 1
-autoreconf -fi
 %configure2_5x --disable-static
 %make
 
@@ -66,7 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 # zap .a and .la
-rm -fr %{buildroot}%{_libdir}/{*.la}
+rm -fr %{buildroot}%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
