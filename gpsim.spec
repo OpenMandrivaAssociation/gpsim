@@ -1,6 +1,6 @@
 %define name    gpsim
-%define version 0.24.0
-%define release %mkrel 3
+%define version 0.26.1
+%define release %mkrel 1
 
 %define lib_name_orig lib%{name}
 %define lib_major 0
@@ -13,10 +13,10 @@ Version:        %{version}
 Release:        %{release}
 Summary:        A software simulator for Microchip PIC microcontrollers
 Source0:        %{name}-%{version}.tar.gz
-Patch0:		gpsim-0.24.0-linkage.patch
+Patch0:		gpsim-0.26.1-linkage.patch
 License:        GPL
 Group:          Development/Other
-Url:            http://www.dattalo.com/gnupic/gpsim.html
+Url:		http://gpsim.sourceforge.net/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  readline-devel flex popt-devel glib2-devel
 BuildRequires:  termcap-devel ncurses-devel glibc-static-devel
@@ -56,9 +56,9 @@ applications which will use libgpsim
 %patch0 -p0
 
 %build
-autoreconf -fi
 %define _disable_ld_no_undefined 1
-%configure2_5x
+autoreconf -fi
+%configure2_5x --disable-static
 %make
 
 %install
@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 # zap .a and .la
-rm -fr %{buildroot}%{_libdir}/{*.a,*.la}
+rm -fr %{buildroot}%{_libdir}/{*.la}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
