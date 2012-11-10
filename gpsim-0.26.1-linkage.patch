@@ -1,0 +1,51 @@
+--- src/dspic/Makefile.am.orig	2010-06-06 14:33:00.000000000 +0200
++++ src/dspic/Makefile.am	2011-05-20 05:53:22.000000000 +0200
+@@ -10,6 +10,6 @@
+ 	dspic-instructions.cc dspic-instructions.h \
+ 	dspic-registers.cc dspic-registers.h
+ 
+-libgpsim_dspic_la_LDFLAGS =  @X_LDFLAGS@
++libgpsim_dspic_la_LIBADD =  @X_LDFLAGS@ $(top_builddir)/src/libgpsim.la
+ 
+ EXTRA_DIST = makefile.mingw
+--- src/Makefile.am.orig	2010-06-06 14:33:01.000000000 +0200
++++ src/Makefile.am	2011-05-20 05:53:42.000000000 +0200
+@@ -177,6 +177,6 @@
+ libgpsim_la_LIBADD =  @X_LDFLAGS@
+ libgpsim_la_LDFLAGS = -lpthread
+ 
+-SUBDIRS = dspic
++SUBDIRS = . dspic
+ 
+ EXTRA_DIST = makefile.mingw
+--- src/dspic/Makefile.in.link	2011-05-20 06:41:16.000000000 +0200
++++ src/dspic/Makefile.in	2011-05-20 06:42:15.000000000 +0200
+@@ -68,7 +68,7 @@
+   sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
+ am__installdirs = "$(DESTDIR)$(libdir)"
+ LTLIBRARIES = $(lib_LTLIBRARIES)
+-libgpsim_dspic_la_LIBADD =
++libgpsim_dspic_la_LIBADD = @X_LDFLAGS@ $(top_builddir)/src/libgpsim.la
+ am_libgpsim_dspic_la_OBJECTS = gpsim_modules.lo dspic-processors.lo \
+ 	dspic-instructions.lo dspic-registers.lo
+ libgpsim_dspic_la_OBJECTS = $(am_libgpsim_dspic_la_OBJECTS)
+@@ -242,7 +242,7 @@
+ 	dspic-instructions.cc dspic-instructions.h \
+ 	dspic-registers.cc dspic-registers.h
+ 
+-libgpsim_dspic_la_LDFLAGS = @X_LDFLAGS@
++libgpsim_dspic_la_LDFLAGS =
+ EXTRA_DIST = makefile.mingw
+ all: all-am
+ 
+--- src/Makefile.in.link	2011-05-20 06:42:43.000000000 +0200
++++ src/Makefile.in	2011-05-20 06:42:55.000000000 +0200
+@@ -464,7 +464,7 @@
+ #libgpsim_la_LDFLAGS = $(shell gtk-config --libs)
+ libgpsim_la_LIBADD = @X_LDFLAGS@
+ libgpsim_la_LDFLAGS = -lpthread
+-SUBDIRS = dspic
++SUBDIRS = . dspic
+ EXTRA_DIST = makefile.mingw
+ all: all-recursive
+ 
