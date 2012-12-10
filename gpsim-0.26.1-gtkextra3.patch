@@ -1,0 +1,44 @@
+--- BUILD/gpsim-0.26.1/configure.ac.gtkextra3	2011-04-26 14:13:37.000000000 +0400
++++ BUILD/gpsim-0.26.1/configure.ac	2012-10-31 19:44:43.326842666 +0400
+@@ -79,15 +79,15 @@ if test "$use_gui" = "no"; then
+ else
+   dnl gtk2 checks
+ 
+-  $PKGCONFIG --exists gtkextra-2.0
++  $PKGCONFIG --exists gtkextra-3.0
+   if test $? != 0; then
+-    AC_MSG_ERROR(Cannot find gtkextra-2.0 package)
++    AC_MSG_ERROR(Cannot find gtkextra-3.0 package)
+   fi
+ 
+   X_LDFLAGS=`$PKGCONFIG --libs gtk+-2.0 gthread-2.0`
+   X_CFLAGS=`$PKGCONFIG --cflags gtk+-2.0`
+-  Y_LDFLAGS=`$PKGCONFIG --libs gtkextra-2.0`
+-  Y_CFLAGS=`$PKGCONFIG --cflags gtkextra-2.0`
++  Y_LDFLAGS=`$PKGCONFIG --libs gtkextra-3.0`
++  Y_CFLAGS=`$PKGCONFIG --cflags gtkextra-3.0`
+   GTK_VERSION_T=`$PKGCONFIG --modversion gtk+-2.0`
+   echo linking with gtk-$GTK_VERSION_T
+   AC_DEFINE_UNQUOTED([GTK_VERSION],"$GTK_VERSION_T",[gtk version])
+--- BUILD/gpsim-0.26.1/configure.gtkextra3	2012-10-31 19:44:43.520842440 +0400
++++ BUILD/gpsim-0.26.1/configure	2012-10-31 19:45:32.291779714 +0400
+@@ -4862,15 +4862,15 @@ if test "$use_gui" = "no"; then
+   Y_CFLAGS=
+ else
+ 
+-  $PKGCONFIG --exists gtkextra-2.0
++  $PKGCONFIG --exists gtkextra-3.0
+   if test $? != 0; then
+-    as_fn_error $? "Cannot find gtkextra-2.0 package" "$LINENO" 5
++    as_fn_error $? "Cannot find gtkextra-3.0 package" "$LINENO" 5
+   fi
+ 
+   X_LDFLAGS=`$PKGCONFIG --libs gtk+-2.0 gthread-2.0`
+   X_CFLAGS=`$PKGCONFIG --cflags gtk+-2.0`
+-  Y_LDFLAGS=`$PKGCONFIG --libs gtkextra-2.0`
+-  Y_CFLAGS=`$PKGCONFIG --cflags gtkextra-2.0`
++  Y_LDFLAGS=`$PKGCONFIG --libs gtkextra-3.0`
++  Y_CFLAGS=`$PKGCONFIG --cflags gtkextra-3.0`
+   GTK_VERSION_T=`$PKGCONFIG --modversion gtk+-2.0`
+   echo linking with gtk-$GTK_VERSION_T
+ 
