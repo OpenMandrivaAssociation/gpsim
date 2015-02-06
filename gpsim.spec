@@ -1,6 +1,6 @@
 %define name    gpsim
 %define version 0.26.1
-%define release %mkrel 1
+%define release 2
 
 %define lib_name_orig lib%{name}
 %define lib_major 0
