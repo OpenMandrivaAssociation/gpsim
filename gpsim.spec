@@ -18,7 +18,7 @@ Patch1:		gpsim-0.26.1-gtkextra3.patch
 Patch2:		gpsim-0.26.1-glibh.patch
 License:        GPL
 Group:          Development/Other
-Url:		http://gpsim.sourceforge.net/
+Url:		https://gpsim.sourceforge.net/
 BuildRequires:  readline-devel flex pkgconfig(popt) pkgconfig(glib-2.0)
 BuildRequires:  termcap-devel pkgconfig(ncurses) glibc-static-devel
 BuildRequires:  libgtk+extra-3-devel
